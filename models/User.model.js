@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost/mongoose_basics');
+const Schema = mongoose.Schema;
 
 const todoSchema = {
     name: { type: String },
@@ -9,12 +8,11 @@ const todoSchema = {
         default: false
     }
 }
-const userSchema = {
-    name: { type: String },
+const userSchema = new Schema({
     email: { type: String },
     todos: {
         type: [todoSchema]
     }
-}
+}, { timestamps: true });
 
-mongoose.Schema('User', userSchema);
+module.exports = mongoose.model('User', userSchema);

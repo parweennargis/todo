@@ -1,15 +1,19 @@
-const route = require('route');
 const todoController = require('../controller/todo.controller');
 
-// create the TODO
-route.post('/todo', todoController.createTodo);
+const todosRoutes = (app, router) => {
+    // create the TODO
+    router.post('/todo', todoController.createTodo);
 
-// Update TODO
-route.put('/todo/:todoId', todoController.updateTodo);
+    // Update TODO
+    router.put('/todo/:todoId', todoController.updateTodo);
 
-// List TODO
-route.get('/todos/:email', todoController.getTodos);
+    // List TODO
+    router.get('/todos/:email', todoController.getTodos);
 
-// delete TODO
-route.del('/todo/:todoId', todoController.deleteTodo);
+    // delete TODO
+    router.delete('/todo/:todoId', todoController.deleteTodo);
 
+    return router;
+};
+
+module.exports = todosRoutes;
